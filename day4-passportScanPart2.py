@@ -57,16 +57,19 @@ def checkValidity(pass_string):
 def main():
 	f = open("day4input.txt")
 	content = f.readlines()
+	content_length = len(content)
+	icount = 0
 	count = 0
 	temp_string = ""
 
 	for line in content:
-		if(line != "\n"):
+		icount += 1
+		if(line != "\n" and icount < content_length):	#icount < content_length this is only to catch the edge case (last batch)
 			temp_string += line
 		else:
 			if(checkValidity(temp_string)):
 				count += 1
-			temp_string = ""
+			temp_string = ""	
 	print(count)
 
 hgtRegex = re.compile("^\d\din|\d\d\dcm$")
