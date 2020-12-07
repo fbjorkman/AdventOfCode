@@ -16,18 +16,16 @@ def checkEyr(eyr):
 	return True
 
 def checkHgt(hgt):
-	if(hgt == None):
+	if(hgt == None or not hgtRegex.match(hgt)):
 		return False
 	if(re.search("in", hgt) != None):
-		value = int(hgt[0:1])
-		if(value < 59 and value > 76):
-			return False
-	elif(re.search("cm", hgt) != None):
 		value = int(hgt[0:2])
-		if(value < 150 and value > 193):
+		if(value < 59 or value > 76):
 			return False
-	else:
-		return False
+	if(re.search("cm", hgt) != None):
+		value = int(hgt[0:3])
+		if(value < 150 or value > 193):
+			return False
 	return True
 	
 
@@ -38,8 +36,6 @@ def checkValidity(pass_string):
 	for kv in kvarray:
 		temp = kv.split(":")
 		if(len(temp) == 2):
-			if(temp[0] == "ecl" and kvstore.get("ecl")):
-				return False
 			kvstore[temp[0]] = temp[1]
 
 	if(not checkByr(kvstore.get("byr"))):
@@ -73,6 +69,7 @@ def main():
 			temp_string = ""
 	print(count)
 
+hgtRegex = re.compile("^\d\din|\d\d\dcm$")
 hclRegex = re.compile("^#[0-9a-f]{6}$")
 eye_color = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
 pidRegex = re.compile("[0-9]{9}")
