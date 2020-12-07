@@ -1,19 +1,13 @@
 import re
 
 def checkByr(byr):
-	if(byr == None or int(byr) < 1920 or int(byr) > 2002):
-		return False
-	return True
+	return not (byr == None or int(byr) < 1920 or int(byr) > 2002)
 
 def checkIyr(iyr):
-	if(iyr == None or int(iyr) < 2010 or int(iyr) > 2020):
-		return False
-	return True
+	return not (iyr == None or int(iyr) < 2010 or int(iyr) > 2020)
 
 def checkEyr(eyr):
-	if(eyr == None or int(eyr) < 2020 or int(eyr) > 2030):
-		return False
-	return True
+	return not (eyr == None or int(eyr) < 2020 or int(eyr) > 2030)
 
 def checkHgt(hgt):
 	if(hgt == None or not hgtRegex.match(hgt)):
@@ -75,5 +69,5 @@ def main():
 hgtRegex = re.compile("^\d\din|\d\d\dcm$")
 hclRegex = re.compile("^#[0-9a-f]{6}$")
 eye_color = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
-pidRegex = re.compile("[0-9]{9}")
+pidRegex = re.compile("^[0-9]{9}$")
 main()
