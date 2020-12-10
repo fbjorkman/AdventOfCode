@@ -1,4 +1,4 @@
-import itertools
+import time
 import re
 
 def recursiveCheck(bag):
@@ -35,4 +35,6 @@ noBagRegex = re.compile('no other bags')
 kvstore = dict()
 approvedbags = dict()
 disapprovedbags = dict()
+start_time = time.time()
 main()
+print(time.time()-start_time)
