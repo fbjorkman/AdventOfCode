@@ -23,7 +23,7 @@ def filterList(num_filter, num_list):
 			matched.append(number)
 	return matched
 
-def fromBin(text):
+def textBinToDecimal(text):
 	number = 0
 	for i in range(len(text)):
 		number += int(text[len(text)-1-i]) * 2**i
@@ -55,6 +55,6 @@ def main():
 			co2_str = matched[0].replace('\n','')
 			break
 	
-	print(fromBin(oxygen_str)*fromBin(co2_str))
+	print(textBinToDecimal(oxygen_str)*textBinToDecimal(co2_str))
 
 main()
